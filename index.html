@@ -3,138 +3,189 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>成語實力挑戰賽（全拖拉互動版）</title>
+  <title>成語實力挑戰賽（每題旁邊選項區）</title>
   <style>
-    body { font-family:"Noto Sans TC",sans-serif; margin:2rem; max-width:900px; background:#f8f9fa; }
-    h1,h2 { color:#2c3e50; }
-    p, li { line-height:1.6; }
-    .draggable { padding:6px 12px; background:#ecf0f1; border-radius:4px; margin:4px; display:inline-block; cursor:grab; }
-    .drop-slot { display:inline-block; min-width:140px; min-height:24px; margin:4px; padding:4px; border:2px dashed #bbb; border-radius:4px; vertical-align:middle; }
-    .drop-slot.filled { background:#dff0d8; border-color:#3c763d; }
-    .correct { border-color:#3c763d!important; background:#dff0d8!important; }
-    .wrong { background:#f8d7da!important; border-color:#a94442!important; }
-    button { margin-top:1rem; padding:8px 16px; font-size:1rem; }
-    section { margin-top:2rem; background:#fff; padding:1rem; border-radius:5px; border:1px solid #ddd; }
+    body { font-family:"Noto Sans TC",sans-serif; background:#f4f8fc; margin:0; padding:20px; }
+    .container { max-width:900px; margin:auto; background:#fff; padding:20px; border-radius:8px; }
+    h1 { text-align:center; color:#2c3e50; }
+    h2 { color:#34495e; margin-top:1.5rem; }
+    .section { display:flex; margin-top:20px; }
+    .questions { flex:3; padding-right:20px; }
+    .choices-area { flex:1; background:#e3f2fd; padding:10px; border:1px dashed #90caf9; border-radius:6px; min-height:50px; }
+    ol { padding-left:1.4em; }
+    li { margin-bottom:0.8em; }
+    .dropzone {
+      display:inline-block; min-width:140px; min-height:32px;
+      padding:6px 10px; margin:0 4px;
+      border:3px dashed #aaa; border-radius:4px;
+      background:#fff; vertical-align:middle;
+    }
+    .draggable {
+      padding:6px 10px; margin:6px 4px;
+      background:#e0f7fa; border:1px solid #26a69a;
+      border-radius:4px; cursor:move; user-select:none;
+    }
+    button {
+      margin:12px 0; padding:8px 16px;
+      background:#0288d1; color:#fff;
+      border:none; border-radius:4px; cursor:pointer;
+    }
+    .feedback { text-align:center; margin-top:8px; font-weight:bold; }
   </style>
 </head>
 <body>
-  <h1>翰林國小 高年級 成語實力挑戰賽<br><small>（全拖拉互動版）</small></h1>
-  <p>班級：_____　姓名：_____　座號：_____</p>
+  <div class="container">
+    <h1>成語實力挑戰賽</h1>
+    <p><strong>班級：</strong>____ 　<strong>姓名：</strong>____ 　<strong>座號：</strong>__</p>
+    <p><em>歡迎來到成語尋寶遊戲！將正確的成語拖到句子空格。每題旁邊都有選項欄，操作更順手。</em></p>
 
-  <!-- 題庫一次準備 -->
-  <div id="drags" style="display:none;">
-    渾渾噩噩,罪魁禍首,任勞任怨,無可奈何,出爾反爾,姍姍來遲,對症下藥,大惑不解,搜索枯腸,滔滔不絕,大庭廣眾,狼狽不堪,心如刀割,居心叵測,裹足不前,念飴弄孫,磨杵成針,博古通今,冠冕堂皇,神來之筆,梁上君子,臨渴掘井,一決雌雄,別出心裁,單刀直入,生不逢辰,白雲蒼狗,甘拜下風,大庭廣眾
+    <!-- 第一大題 Section -->
+    <div class="section">
+      <div class="questions">
+        <h2>第一大題：情境選擇（10題）</h2>
+        <ol id="q1">
+          <li>媽媽每天為我們準備三餐、清洗衣物，卻從不喊累，真是（<span class="dropzone" data-answer="任勞任怨"></span>）。</li>
+          <li>這場森林大火的（<span class="dropzone" data-answer="罪魁禍首"></span>），竟然是遊客隨手亂丟的菸蒂。</li>
+          <li>小明上學又遲到了，他總是（<span class="dropzone" data-answer="姍姍來遲"></span>）。</li>
+          <li>面對這場突如其來的大雨，沒帶傘的我們被淋得（<span class="dropzone" data-answer="狼狽不堪"></span>）。</li>
+          <li>醫生找出病因後，立刻（<span class="dropzone" data-answer="對症下藥"></span>），我的病很快就好了。</li>
+          <li>看到自己心愛的寵物生病痛苦的樣子，我彷彿（<span class="dropzone" data-answer="心如刀割"></span>）。</li>
+          <li>他明明答應要幫忙，現在卻又反悔，這種（<span class="dropzone" data-answer="出爾反爾"></span>）的行為真不可取。</li>
+          <li>一提到他喜歡的恐龍話題，他便（<span class="dropzone" data-answer="滔滔不絕"></span>），完全停不下來。</li>
+          <li>這個作文題目好難，我（<span class="dropzone" data-answer="搜索枯腸"></span>）了半天，還是一個字都寫不出來。</li>
+          <li>他每天沉迷於電玩，上課也無精打采，就這樣（<span class="dropzone" data-answer="渾渾噩噩"></span>）地過日子。</li>
+        </ol>
+        <button onclick="check('q1','f1')">檢查第一大題</button>
+        <div id="f1" class="feedback"></div>
+      </div>
+      <div id="pool1" class="choices-area"></div>
+    </div>
+
+    <!-- 第二大題 Section -->
+    <div class="section">
+      <div class="questions">
+        <h2>第二大題：成語配對（10題）</h2>
+        <ol id="q2">
+      <li>爺爺退休後，每天在家陪小孫子玩，享受天倫之樂，是（ <span class="dropzone" data-answer="念飴弄孫"></span> ）。</li>
+      <li>經過多年的苦練，他終於從一個不會畫畫的人變成大師，是因為（ <span class="dropzone" data-answer="磨杵成針"></span> ）。</li>
+      <li>那位歷史老師知識淵博，從古代史講到現代史都難不倒他，他可說是（ <span class="dropzone" data-answer="博古通今"></span> ）。</li>
+      <li>檢察官說的理由聽起來義正詞嚴，其實都是藉口，他講話（ <span class="dropzone" data-answer="冠冕堂皇"></span> ）。</li>
+      <li>畫家在完成的畫作上多加了一隻小鳥，讓整幅畫活了起來，真是（ <span class="dropzone" data-answer="神來之筆"></span> ）。</li>
+      <li>「小偷」的雅稱是（ <span class="dropzone" data-answer="梁上君子"></span> ）。</li>
+      <li>平時不準備，考試前一天才熬夜讀書，這種行為叫（ <span class="dropzone" data-answer="臨渴掘井"></span> ）。</li>
+      <li>這兩支球隊實力相當，明天要進行總決賽，看誰能贏得冠軍，真是（ <span class="dropzone" data-answer="一決雌雄"></span> ）。</li>
+      <li>這件作品的設計風格非常獨特，充滿了創意，可說是（ <span class="dropzone" data-answer="別出心裁"></span> ）。</li>
+      <li>他一開口就直接點出問題的核心，不拐彎抹角，真是（ <span class="dropzone" data-answer="單刀直入"></span> ）。</li>
+        </ol>
+        <button onclick="check('q2','f2')">檢查第二大題</button>
+        <div id="f2" class="feedback"></div>
+      </div>
+      <div id="pool2" class="choices-area"></div>
+    </div>
+
+    <!-- 第三大題 Section -->
+    <div class="section">
+      <div class="questions">
+        <h2>第三大題：讀短文填空（5格）</h2>
+        <p id="q3">
+   小華是一位非常有才華的作家，他寫的文章總是（ <span class="dropzone" data-answer="引經據典"></span> ），內容十分豐富。可惜他的風格在當時不被大眾欣賞，常常感嘆自己（ <span class="dropzone" data-answer="生不逢辰"></span> ）。幾十年過去了，世事變化就像（ <span class="dropzone" data-answer="白雲蒼狗"></span> ），當年沒沒無聞的他，如今作品卻被世人重新發掘，奉為經典。就連當代最紅的作家都公開表示，在小華的文采面前，自己（ <span class="dropzone" data-answer="甘拜下風"></span> ）。對於這一切，年邁的小華也只能（ <span class="dropzone" data-answer="無可奈何"></span> ）地感嘆命運的奇妙安排。
+        </p>
+        <button onclick="check('q3','f3')">檢查第三大題</button>
+        <div id="f3" class="feedback"></div>
+      </div>
+      <div id="pool3" class="choices-area"></div>
+    </div>
+
+    <!-- 第四大題 Section -->
+    <div class="section">
+      <div class="questions">
+        <h2>第四大題：我是造句小高手（4題）</h2>
+        <ol id="q4">
+       <li>平時待人溫和的王叔叔，今天卻突然對我大發雷霆，讓我感到（ <span class="dropzone" data-answer="大惑不解"></span> ）。</li>
+        <li>那個陌生人一直用不懷好意的眼神看著我們，肯定（ <span class="dropzone" data-answer="居心叵測"></span> ），我們快點離開吧！</li>
+        <li>面對學習上的困難，我們不應該（ <span class="dropzone" data-answer="裹足不前"></span>），而是要勇敢地克服它。</li>
+        <li>在（ <span class="dropzone" data-answer="大庭廣眾"></span> ）之下隨地吐痰，非常沒公德心。</li>
+        </ol>
+        <button onclick="check('q4','f4')">檢查第四大題</button>
+        <div id="f4" class="feedback"></div>
+      </div>
+      <div id="pool4" class="choices-area"></div>
+    </div>
   </div>
 
-  <section>
-    <h2>第一大題：情境選擇（拖拉填空、共10題）</h2>
-    <p>將成語拖到句中空格，完成後點「檢查」。</p>
-    <ol>
-      <li>媽媽每天幫忙家務，真是<div class="drop-slot" data-answer="任勞任怨"></div>。</li>
-      <li>這場火災的<div class="drop-slot" data-answer="罪魁禍首"></div>是菸蒂。</li>
-      <li>小明總是<div class="drop-slot" data-answer="姍姍來遲"></div>。</li>
-      <li>沒帶傘被淋得<div class="drop-slot" data-answer="狼狽不堪"></div>。</li>
-      <li>醫生立即<div class="drop-slot" data-answer="對症下藥"></div>後，我康復了。</li>
-      <li>看到寵物痛苦，我心像刀割—<div class="drop-slot" data-answer="心如刀割"></div>。</li>
-      <li>他說完就不做，真是<div class="drop-slot" data-answer="出爾反爾"></div>。</li>
-      <li>一提話題他就<div class="drop-slot" data-answer="滔滔不絕"></div>。</li>
-      <li>寫作困難，我在思考<div class="drop-slot" data-answer="搜索枯腸"></div>。</li>
-      <li>他沉迷遊戲生活變得<div class="drop-slot" data-answer="渾渾噩噩"></div>。</li>
-    </ol>
-    <button onclick="checkSection('sec1')">檢查第一題</button>
-    <div class="feedback" id="sec1"></div>
-  </section>
-
-  <section>
-    <h2>第二大題：成語配對（拖拉配對、共10題）</h2>
-    <p>將成語拖至對應空格，完成後點「檢查第二題」。</p>
-    <ol>
-      <li>爺爺退休後陪孫子玩，是<div class="drop-slot" data-answer="念飴弄孫"></div>。</li>
-      <li>多年苦練，他以磨杵成針般毅力成大師：<div class="drop-slot" data-answer="磨杵成針"></div></li>
-      <li>老師知識豐富，是<div class="drop-slot" data-answer="博古通今"></div>。</li>
-      <li>檢察官說一番話冠冕堂皇卻不實：<div class="drop-slot" data-answer="冠冕堂皇"></div></li>
-      <li>畫家題字後加一句<span>神來之筆</span>：<div class="drop-slot" data-answer="神來之筆"></div></li>
-      <li>「小偷」的雅稱是<div class="drop-slot" data-answer="梁上君子"></div>。</li>
-      <li>考前一天才準備是<div class="drop-slot" data-answer="臨渴掘井"></div>。</li>
-      <li>兩隊將展開<div class="drop-slot" data-answer="一決雌雄"></div>。</li>
-      <li>這作品設計非常創新—<div class="drop-slot" data-answer="別出心裁"></div></li>
-      <li>他一開口就<div class="drop-slot" data-answer="單刀直入"></div>問題核心。</li>
-    </ol>
-    <button onclick="checkSection('sec2')">檢查第二題</button>
-    <div class="feedback" id="sec2"></div>
-  </section>
-
-  <section>
-    <h2>第三大題：讀短文填空（拖拉填入、共5題）</h2>
-    <p>短文中拖入合適成語後點「檢查」。</p>
-    <p>小華是一位才華洋溢的作家，他文章總是<div class="drop-slot" data-answer="引經據典"></div>。可惜當時風格不被看好，他常感嘆自己<div class="drop-slot" data-answer="生不逢辰"></div>。幾十年後，世事如<div class="drop-slot" data-answer="白雲蒼狗"></div>，他作品被重新發掘，連當紅作家都公開表示在他面前自己<div class="drop-slot" data-answer="甘拜下風"></div>。如今，他⋯只能<div class="drop-slot" data-answer="無可奈何"></div>地感嘆命運。</p>
-    <button onclick="checkSection('sec3')">檢查第三題</button>
-    <div class="feedback" id="sec3"></div>
-  </section>
-
-  <section>
-    <h2>第四大題：我是造句小高手（拖拉填句、共4題）</h2>
-    <p>完成以下造句後點「檢查第四題」。</p>
-    <ol>
-      <li>王叔叔今天突然生氣，我真是<div class="drop-slot" data-answer="大惑不解"></div>。</li>
-      <li>陌生人盯著我們看，很明顯是<div class="drop-slot" data-answer="居心叵測"></div>。</li>
-      <li>學習困難時，我們不應該<div class="drop-slot" data-answer="裹足不前"></div>。</li>
-      <li>在<div class="drop-slot" data-answer="大庭廣眾"></div>下隨地吐痰，太沒公德了。</li>
-    </ol>
-    <button onclick="checkSection('sec4')">檢查第四題</button>
-    <div class="feedback" id="sec4"></div>
-  </section>
-
-  <h2>📋 可拖曳成語列表</h2>
-  <div id="dragPool"></div>
-
   <script>
-    // 生成拖拉選項
-    const poolEl = document.getElementById('dragPool');
-    document.getElementById('drags').textContent.split(',').forEach(text => {
-      const d = document.createElement('div');
-      d.className = 'draggable';
-      d.draggable = true;
-      d.textContent = text;
-      poolEl.appendChild(d);
-    });
+    function shuffle(arr) {
+      for (let i=arr.length-1; i>0; i--) {
+        const j = Math.floor(Math.random()*(i+1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    const pools = {
+      pool1: shuffle(["任勞任怨","罪魁禍首","姍姍來遲","狼狽不堪","對症下藥","心如刀割","出爾反爾","滔滔不絕","搜索枯腸","渾渾噩噩"]),
+      pool2: shuffle(["念飴弄孫","磨杵成針","博古通今","冠冕堂皇","神來之筆","梁上君子","臨渴掘井","一決雌雄","別出心裁","單刀直入"]),
+      pool3: shuffle(["引經據典","生不逢辰","白雲蒼狗","甘拜下風","無可奈何"]),
+      pool4: shuffle(["大惑不解","居心叵測","裹足不前","大庭廣眾"])
+    };
+
+    for (let key in pools) {
+      const area = document.getElementById(key);
+      pools[key].forEach(w => {
+        const d = document.createElement("div");
+        d.className = "draggable";
+        d.draggable = true;
+        d.textContent = w;
+        d.dataset.pool = key;
+        area.appendChild(d);
+      });
+    }
 
     let dragged = null;
-    document.addEventListener('dragstart', e => {
-      if(e.target.classList.contains('draggable')){
-        dragged = e.target; e.target.style.opacity='0.5';
-      }
-    });
-    document.addEventListener('dragend', e => {
-      if(e.target.classList.contains('draggable')){
-        e.target.style.opacity='1';
-      }
-    });
-    document.querySelectorAll('.drop-slot').forEach(slot => {
-      slot.addEventListener('dragover', e => e.preventDefault());
-      slot.addEventListener('drop', e => {
-        if(dragged && !slot.classList.contains('filled')){
-          slot.textContent = dragged.textContent;
-          slot.classList.add('filled');
-          dragged.remove();
-        }
-      });
+
+    document.addEventListener("dragstart", e => {
+      if (e.target.classList.contains("draggable")) dragged = e.target;
     });
 
-    function checkSection(secId){
-      const slots = document.querySelectorAll(`#${secId.replace('sec','')} .drop-slot`);
-      let correct=0;
-      slots.forEach(s=>{
-        if(s.textContent === s.getAttribute('data-answer')){
-          s.classList.add('correct');
-          s.classList.remove('wrong');
+    document.addEventListener("dragover", e => {
+      if (e.target.classList.contains("dropzone") || e.target.classList.contains("choices-area")) e.preventDefault();
+    });
+
+    document.addEventListener("drop", e => {
+      const tgt = e.target;
+      if (tgt.classList.contains("dropzone")) {
+        e.preventDefault();
+        if (tgt.textContent) returnToPool(tgt.textContent, dragged.dataset.pool);
+        tgt.textContent = dragged.textContent;
+        dragged.remove();
+      } else if (tgt.classList.contains("choices-area")) {
+        e.preventDefault();
+        tgt.appendChild(dragged);
+      }
+    });
+
+    function returnToPool(word, poolId) {
+      const area = document.getElementById(poolId);
+      const d = document.createElement("div");
+      d.className = "draggable";
+      d.draggable = true;
+      d.textContent = word;
+      d.dataset.pool = poolId;
+      area.appendChild(d);
+    }
+
+    function check(qId, fId) {
+      const zones = document.querySelectorAll(`#${qId} .dropzone`);
+      let correct = 0;
+      zones.forEach(z => {
+        if (z.textContent === z.dataset.answer) {
           correct++;
+          z.style.background = "#c8e6c9";
         } else {
-          s.classList.add('wrong');
-          s.classList.remove('correct');
+          z.style.background = "#ffcdd2";
         }
       });
-      document.getElementById(secId).textContent = `答對 ${correct} / ${slots.length} 題！`;
+      document.getElementById(fId).innerText = `你答對了 ${correct}/${zones.length} 題`;
     }
   </script>
 </body>
